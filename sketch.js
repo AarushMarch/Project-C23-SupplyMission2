@@ -14,8 +14,7 @@ function preload()
 
 function setup() {
 	createCanvas(800, 700);
-	rectMode(CENTER);
-	
+	rectMode(CENTER)
 
 	packageSprite=createSprite(width/2, 80, 10,10);
 	packageSprite.addImage(packageIMG)
@@ -31,9 +30,9 @@ function setup() {
 	Rw = createSprite(500, 650, 20, 100);
 	Rw.shapeColor = color(255, 0, 0);
 
-	Bw = createSprite(0, 0, 200, 20)
+	Bw = createSprite(400, 650, 200, 20)
 	Bw.shapeColor = color(255, 0, 0);
-	Bw.rectMode(CENTER);
+
 
 
 	groundSprite=createSprite(width/2, height-35, width,10);
@@ -44,17 +43,18 @@ function setup() {
 	world = engine.world;
 
 	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0, isStatic:true});
+
 	World.add(world, packageBody);
 	
-	LwB = Bodies.rectangle(300, 650, 20, 100, {restitution:0, isStatic:true});
-
-	RwB = Bodies.rectangle(500, 650, 20, 100, {restitution:0, isStatic:true});
-
-	BwB = Bodies.rectangle(300, 650, 200, 20, {restitution:0, isStatic:true});
-
+	LwB = Bodies.rectangle(300, 650, 20, 100, {isStatic:true});
+	World.add(world, LwB);
+	RwB = Bodies.rectangle(500, 650, 20, 100, {isStatic:true});
+	World.add(world, RwB);
+	BwB = Bodies.rectangle(300, 650, 200, 20, {isStatic:true});
+	World.add(world, BwB);
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
- 	World.add(world, ground);
+	World.add(world, ground);
 
 
 	Engine.run(engine);
